@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div key="1" className="flex flex-col h-screen w-full bg-[#ffffff] p-4">
+    <div className="flex flex-col h-screen w-full bg-[#ffffff] p-4">
       <header className="flex items-center justify-between p-4 bg-white text-black">
         <Button className="bg-transparent text-xl font-bold text-red-600">
           Tinder
@@ -20,17 +20,17 @@ export default function Home() {
                 aspectRatio: "300/500",
               }}
             >
-              😊
               <div className="absolute opacity-20 text-9xl">😊</div>
+              <div className="absolute">😊</div>
+              <div className="absolute top-60">
+                <span className="text-black text-lg font-semibold">Demo</span>
+              </div>
             </div>
-            <div className="absolute bottom-4 left-4 flex items-center justify-between w-full px-4">
+            <div className="absolute bottom-4 flex items-center justify-between w-full px-4">
               <div className="flex items-center space-x-2">
                 <span className="text-black text-lg font-semibold">Male</span>
               </div>
               <span className="text-black text-lg font-semibold">Female</span>
-            </div>
-            <div className="absolute bottom-0 left-0 flex items-center justify-center w-full px-4">
-              <span className="text-black text-lg font-semibold">Demo</span>
             </div>
           </div>
         </div>
