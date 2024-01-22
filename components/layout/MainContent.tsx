@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import TinderCard from "@/components/TinderCard";
 import Score from "@/components/Score";
 import JSConfetti from "js-confetti";
+import SwipeCard from "react-tinder-card";
+import { TinderItem } from "@/types/TinderCard";
+import { Direction } from "@/types/Direction";
 
 const items = [
   { title: "כיסא", emoji: "🪑", gender: "m" },
@@ -49,45 +52,45 @@ const items = [
 ];
 
 export default function MainContent() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [highestScore, setHighestScore] = useState(0);
 
-  const handleSwipe = () => {
-    if (currentIndex < items.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      setCurrentIndex(0);
-    }
-  };
+  const swiped = (direction: Direction, item: TinderItem) => {
+    const isCorrect =
+      (direction === "left" && item.gender === "m") ||
+      (direction === "right" && item.gender === "f");
 
-  const handleGenderClick = (selectedGender: string) => {
-    if (items[currentIndex].gender === selectedGender) {
+    if (isCorrect) {
       setScore(score + 1);
-
-      if (score + 1 > highestScore) {
-        setHighestScore(score + 1);
-      }
 
       const jsConfetti = new JSConfetti();
 
       jsConfetti.addConfetti({
-        emojis: [items[currentIndex].emoji, "⚡️", "💥", "✨", "💫"],
+        emojis: [item.emoji, "⚡️", "💥", "✨", "💫"],
       });
+
+      if (score + 1 > highestScore) {
+        setHighestScore(score + 1);
+      }
     } else {
       setScore(0);
     }
-
-    handleSwipe();
   };
 
   return (
     <main className="flex-1 flex items-center justify-center flex-col">
       <Score score={score} highestScore={highestScore} />
-      <TinderCard
-        item={items[currentIndex]}
-        onGenderClick={handleGenderClick}
-      />
+      <div className="h-full w-full max-w-[300px] max-h-[500px]">
+        {items.map((item) => (
+          <SwipeCard
+            className="absolute"
+            key={item.title}
+            onSwipe={(direction) => swiped(direction, item)}
+          >
+            <TinderCard item={item} />
+          </SwipeCard>
+        ))}
+      </div>
     </main>
   );
 }
