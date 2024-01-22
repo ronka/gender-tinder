@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import TinderCard from "@/components/TinderCard";
 import Score from "@/components/Score";
+import JSConfetti from "js-confetti";
 
 const items = [
   { title: "כיסא", emoji: "🪑", gender: "m" },
@@ -63,13 +64,17 @@ export default function MainContent() {
 
   const handleGenderClick = (selectedGender: string) => {
     if (items[currentIndex].gender === selectedGender) {
-      // If the selected gender is correct, increase the score
       setScore(score + 1);
+
+      const jsConfetti = new JSConfetti();
+
+      jsConfetti.addConfetti({
+        emojis: [items[currentIndex].emoji, "⚡️", "💥", "✨", "💫"],
+      });
     } else {
-      // If the selected gender is wrong, reset the score to 0
       setScore(0);
     }
-    // Call the onSwipe callback to move to the next card
+
     handleSwipe();
   };
 
