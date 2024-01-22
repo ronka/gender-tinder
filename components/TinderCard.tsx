@@ -1,3 +1,4 @@
+import { hebrewNumbers } from "@/lib/numbers";
 import { TinderItem } from "@/types/TinderCard";
 import React, { useState } from "react";
 
@@ -6,9 +7,14 @@ interface TinderCardProps {
 }
 
 export default function TinderCard({ item }: TinderCardProps) {
+  const randomIndex = Math.floor(
+    Math.random() * Object.keys(hebrewNumbers).length
+  );
+  const randomNumber = Object.keys(hebrewNumbers)[randomIndex];
+
   return (
     <div
-      className={`h-full w-full w-[300px] max-w-[300px] max-h-[500px] relative rounded-2xl bg-gray-100 object-cover flex items-center justify-center text-6xl`}
+      className={`h-full w-full w-[300px] max-w-[300px] max-h-[500px] relative rounded-2xl bg-gray-100 object-cover flex items-center justify-center`}
       style={{
         aspectRatio: "300/500",
       }}
@@ -19,10 +25,12 @@ export default function TinderCard({ item }: TinderCardProps) {
         <span className="text-black text-lg font-semibold">{item.title}</span>
       </div>
       <div className="absolute bottom-4 flex items-center justify-between w-full px-4">
-        <div className="flex items-center space-x-2">
-          <button className="text-2xl font-bold text-black">M</button>
-        </div>
-        <button className="text-2xl font-bold text-black">F</button>
+        <span className="font-bold text-black">
+          {hebrewNumbers[randomNumber].m}
+        </span>
+        <span className="font-bold text-black">
+          {hebrewNumbers[randomNumber].f}
+        </span>
       </div>
     </div>
   );
