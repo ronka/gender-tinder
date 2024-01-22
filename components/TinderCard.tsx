@@ -7,25 +7,20 @@ interface TinderCardProps {
 }
 
 export default function TinderCard({ item, onSwipe }: TinderCardProps) {
-  const [liked, setLiked] = useState(false);
-  const [disliked, setDisliked] = useState(false);
-
-  const handleLike = () => {
-    setLiked(true);
-    onSwipe();
-  };
-
-  const handleDislike = () => {
-    setDisliked(true);
+  const handleGenderClick = (selectedGender: string) => {
+    if (item.gender === selectedGender) {
+      console.log("Correct!");
+    } else {
+      console.log("Wrong!");
+    }
+    // Call the onSwipe callback to move to the next card
     onSwipe();
   };
 
   return (
     <div className="relative">
       <div
-        className={`h-[500px] w-[300px] rounded-2xl object-cover flex items-center justify-center text-6xl ${
-          liked ? "bg-green-200" : disliked ? "bg-red-200" : ""
-        }`}
+        className={`h-[500px] w-[300px] rounded-2xl object-cover flex items-center justify-center text-6xl`}
         style={{
           aspectRatio: "300/500",
         }}
@@ -36,20 +31,20 @@ export default function TinderCard({ item, onSwipe }: TinderCardProps) {
           <span className="text-black text-lg font-semibold">{item.title}</span>
         </div>
       </div>
-      <div className="absolute bottom-2 left-2">
+      <div className="absolute bottom-4 flex items-center justify-between w-full px-4">
+        <div className="flex items-center space-x-2">
+          <button
+            className="text-2xl font-bold text-black"
+            onClick={() => handleGenderClick("m")}
+          >
+            M
+          </button>
+        </div>
         <button
-          className="text-2xl font-bold text-red-600"
-          onClick={handleDislike}
+          className="text-2xl font-bold text-black"
+          onClick={() => handleGenderClick("f")}
         >
-          זכר
-        </button>
-      </div>
-      <div className="absolute bottom-2 right-2">
-        <button
-          className="text-2xl font-bold text-green-600"
-          onClick={handleLike}
-        >
-          נקבה
+          F
         </button>
       </div>
     </div>
