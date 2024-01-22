@@ -76,13 +76,11 @@ export default function MainContent() {
   return (
     <main className="flex-1 flex items-center justify-center flex-col">
       <Score score={score} />
-      <div className="flex flex-col items-center rounded-3xl bg-gray-100 p-8">
-        <TinderCard
-          item={items[currentIndex]}
-          onSwipe={handleSwipe}
-          onGenderClick={handleGenderClick}
-        />
-      </div>
+      <TinderCard
+        item={items[currentIndex]}
+        onSwipe={handleSwipe}
+        onGenderClick={handleGenderClick}
+      />
     </main>
   );
 }
