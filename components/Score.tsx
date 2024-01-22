@@ -7,7 +7,7 @@ interface ScoreProps {
 
 export default function Score({ score, highestScore }: ScoreProps) {
   return (
-    <div className="flex justify-center items-center bg-gray-200 p-2 rounded-md my-2 text-center flex-wrap md:flex-nowrap gap-4">
+    <div className="flex justify-center items-center bg-gray-200 p-2 rounded-md my-4 text-center flex-wrap md:flex-nowrap gap-4">
       <div className="flex items-center gap-2 md:mb-0">
         <span className="text-sm font-semibold text-gray-700 md:text-md lg:text-lg">
           Counter:
