@@ -78,7 +78,6 @@ export default function MainContent() {
       <Score score={score} />
       <TinderCard
         item={items[currentIndex]}
-        onSwipe={handleSwipe}
         onGenderClick={handleGenderClick}
       />
     </main>

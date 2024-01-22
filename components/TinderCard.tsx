@@ -3,25 +3,10 @@ import React, { useState } from "react";
 
 interface TinderCardProps {
   item: TinderItem;
-  onSwipe: () => void;
   onGenderClick: (gender: string) => void;
 }
 
-export default function TinderCard({
-  item,
-  onSwipe,
-  onGenderClick,
-}: TinderCardProps) {
-  const handleGenderClick = (selectedGender: string) => {
-    if (item.gender === selectedGender) {
-      console.log("Correct!");
-    } else {
-      console.log("Wrong!");
-    }
-    // Call the onSwipe callback to move to the next card
-    onSwipe();
-  };
-
+export default function TinderCard({ item, onGenderClick }: TinderCardProps) {
   return (
     <div className="flex h-full w-full flex-col items-center rounded-3xl  p-8">
       <div
