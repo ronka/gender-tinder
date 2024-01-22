@@ -14,14 +14,14 @@ export default function TinderCard({ item }: TinderCardProps) {
 
   return (
     <div
-      className={`h-full w-full w-[300px] max-w-[300px] max-h-[500px] relative rounded-2xl bg-gray-100 object-cover flex items-center justify-center`}
+      className={`h-full w-full w-[300px] max-w-[300px] max-h-[300px] relative rounded-2xl bg-gray-100 object-cover flex items-center justify-center`}
       style={{
         aspectRatio: "300/500",
       }}
     >
       <div className="absolute opacity-20 text-9xl">{item.emoji}</div>
-      <div className="absolute">{item.emoji}</div>
-      <div className="absolute bottom-40">
+      <div className="absolute text-6xl">{item.emoji}</div>
+      <div className="absolute bottom-20">
         <span className="text-black text-lg font-semibold">{item.title}</span>
       </div>
       <div className="absolute bottom-4 flex items-center justify-between w-full px-4">
