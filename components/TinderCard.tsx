@@ -4,9 +4,14 @@ import React, { useState } from "react";
 interface TinderCardProps {
   item: TinderItem;
   onSwipe: () => void;
+  onGenderClick: (gender: string) => void;
 }
 
-export default function TinderCard({ item, onSwipe }: TinderCardProps) {
+export default function TinderCard({
+  item,
+  onSwipe,
+  onGenderClick,
+}: TinderCardProps) {
   const handleGenderClick = (selectedGender: string) => {
     if (item.gender === selectedGender) {
       console.log("Correct!");
@@ -35,14 +40,14 @@ export default function TinderCard({ item, onSwipe }: TinderCardProps) {
         <div className="flex items-center space-x-2">
           <button
             className="text-2xl font-bold text-black"
-            onClick={() => handleGenderClick("m")}
+            onClick={() => onGenderClick("m")}
           >
             M
           </button>
         </div>
         <button
           className="text-2xl font-bold text-black"
-          onClick={() => handleGenderClick("f")}
+          onClick={() => onGenderClick("f")}
         >
           F
         </button>

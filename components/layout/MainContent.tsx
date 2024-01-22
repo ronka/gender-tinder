@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import TinderCard from "@/components/TinderCard";
+import Score from "@/components/Score";
 
 const items = [
   { title: "כיסא", emoji: "🪑", gender: "m" },
@@ -48,6 +49,7 @@ const items = [
 
 export default function MainContent() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [score, setScore] = useState(0);
 
   const handleSwipe = () => {
     // Logic for handling swiping to the next card
@@ -59,10 +61,27 @@ export default function MainContent() {
     }
   };
 
+  const handleGenderClick = (selectedGender: string) => {
+    if (items[currentIndex].gender === selectedGender) {
+      // If the selected gender is correct, increase the score
+      setScore(score + 1);
+    } else {
+      // If the selected gender is wrong, reset the score to 0
+      setScore(0);
+    }
+    // Call the onSwipe callback to move to the next card
+    handleSwipe();
+  };
+
   return (
-    <main className="flex-1 flex items-center justify-center">
+    <main className="flex-1 flex items-center justify-center flex-col">
+      <Score score={score} />
       <div className="flex flex-col items-center rounded-3xl bg-gray-100 p-8">
-        <TinderCard item={items[currentIndex]} onSwipe={handleSwipe} />
+        <TinderCard
+          item={items[currentIndex]}
+          onSwipe={handleSwipe}
+          onGenderClick={handleGenderClick}
+        />
       </div>
     </main>
   );
