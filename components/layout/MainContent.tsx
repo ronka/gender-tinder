@@ -51,13 +51,12 @@ const items = [
 export default function MainContent() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [highestScore, setHighestScore] = useState(0);
 
   const handleSwipe = () => {
-    // Logic for handling swiping to the next card
     if (currentIndex < items.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      // You've reached the end of the list, handle as needed (e.g., loop back to the beginning)
       setCurrentIndex(0);
     }
   };
@@ -65,6 +64,10 @@ export default function MainContent() {
   const handleGenderClick = (selectedGender: string) => {
     if (items[currentIndex].gender === selectedGender) {
       setScore(score + 1);
+
+      if (score + 1 > highestScore) {
+        setHighestScore(score + 1);
+      }
 
       const jsConfetti = new JSConfetti();
 
@@ -80,7 +83,7 @@ export default function MainContent() {
 
   return (
     <main className="flex-1 flex items-center justify-center flex-col">
-      <Score score={score} />
+      <Score score={score} highestScore={highestScore} />
       <TinderCard
         item={items[currentIndex]}
         onGenderClick={handleGenderClick}
