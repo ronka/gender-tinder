@@ -8,6 +8,7 @@ import SwipeCard from "react-tinder-card";
 import { TinderItem } from "@/types/TinderCard";
 import { Direction } from "@/types/Direction";
 import { SwipeDialog } from "@/components/ui/SwipeDialog";
+import { useHighestScore } from "@/hooks/useHighestScore";
 
 const items = [
   { title: "כיסא", emoji: "🪑", gender: "m" },
@@ -54,7 +55,7 @@ const items = [
 
 export default function MainContent() {
   const [score, setScore] = useState(0);
-  const [highestScore, setHighestScore] = useState(0);
+  const { highestScore, updateHighestScore } = useHighestScore();
 
   const swiped = (direction: Direction, item: TinderItem) => {
     const isCorrect =
@@ -71,7 +72,7 @@ export default function MainContent() {
       });
 
       if (score + 1 > highestScore) {
-        setHighestScore(score + 1);
+        updateHighestScore(score + 1);
       }
     } else {
       setScore(0);
