@@ -29,7 +29,7 @@ export function ScoreDialog({ correctAnswers, onClose }: Props) {
   const SHARE_TEXT = `I just scored ${correctAnswers} 🤓`;
 
   return (
-    <Dialog onOpenChange={handleClose}>
+    <Dialog onOpenChange={handleClose} defaultOpen={true}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Share Your Score</DialogTitle>

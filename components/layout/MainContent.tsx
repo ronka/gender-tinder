@@ -88,7 +88,7 @@ export default function MainContent() {
   return (
     <main className="flex-1 flex items-center justify-center flex-col">
       <SwipeDialog />
-      {true && (
+      {showCorrectAnswersDialog && (
         <ScoreDialog
           onClose={() => {
             setShowCorrectAnswersDialog(false);
