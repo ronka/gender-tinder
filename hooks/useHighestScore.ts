@@ -11,9 +11,9 @@ export function useHighestScore() {
 
   // Load the highest score from local storage on mount
   useEffect(() => {
-    const {highestScore} = getDataFromLocalStorage(HIGHEST_SCORE_KEY);
-    if (highestScore !== null) {
-      setHighestScore(highestScore);
+    const savedHighestScore = getDataFromLocalStorage<{highestScore: number}>(HIGHEST_SCORE_KEY);
+    if (savedHighestScore !== null) {
+      setHighestScore(savedHighestScore.highestScore);
     }
   }, []);
 

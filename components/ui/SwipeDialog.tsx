@@ -13,14 +13,26 @@ import {
 import { Button } from "./button";
 import { useOnMount } from "@/hooks/useOnMount";
 import { useState } from "react";
+import {
+  getDataFromLocalStorage,
+  setDataInLocalStorage,
+} from "@/service/LocalStorage";
 
 export const SwipeDialog = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useOnMount(() => {
-    setIsOpen(true);
+    const savedDialogState = getDataFromLocalStorage<boolean>("isDialogOpen");
+    if (savedDialogState !== null) {
+      setIsOpen(savedDialogState);
+    }
   });
 
+  const closeDialog = () => {
+    setIsOpen(false);
+    // Save the dialog state to local storage when it's closed
+    setDataInLocalStorage("isDialogOpen", false);
+  };
   if (!isOpen) return null;
 
   return (
