@@ -9,6 +9,7 @@ import { TinderItem } from "@/types/TinderCard";
 import { Direction } from "@/types/Direction";
 import { SwipeDialog } from "@/components/ui/SwipeDialog";
 import { useHighestScore } from "@/hooks/useHighestScore";
+import { ScoreDialog } from "../ui/ScoreDialog";
 
 const items = [
   { title: "כיסא", emoji: "🪑", gender: "m" },
@@ -56,6 +57,9 @@ const items = [
 export default function MainContent() {
   const [score, setScore] = useState(0);
   const { highestScore, updateHighestScore } = useHighestScore();
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [showCorrectAnswersDialog, setShowCorrectAnswersDialog] =
+    useState(false);
 
   const swiped = (direction: Direction, item: TinderItem) => {
     const isCorrect =
@@ -75,6 +79,8 @@ export default function MainContent() {
         updateHighestScore(score + 1);
       }
     } else {
+      setCorrectAnswers(score);
+      setShowCorrectAnswersDialog(true);
       setScore(0);
     }
   };
@@ -82,6 +88,14 @@ export default function MainContent() {
   return (
     <main className="flex-1 flex items-center justify-center flex-col">
       <SwipeDialog />
+      {showCorrectAnswersDialog && (
+        <ScoreDialog
+          onClose={() => {
+            setShowCorrectAnswersDialog(false);
+          }}
+          correctAnswers={correctAnswers}
+        />
+      )}
       <Score score={score} highestScore={highestScore} />
       <div className="h-full w-full max-w-[300px] max-h-[500px]">
         {items.map((item) => (
