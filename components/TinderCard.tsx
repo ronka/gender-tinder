@@ -14,10 +14,7 @@ export default function TinderCard({ item }: TinderCardProps) {
 
   return (
     <div
-      className={`h-full w-full w-[300px] max-w-[300px] max-h-[300px] relative rounded-2xl bg-gray-100 object-cover flex items-center justify-center`}
-      style={{
-        aspectRatio: "300/500",
-      }}
+      className={`w-[300px] h-[300px] relative rounded-2xl bg-gray-100 object-cover flex items-center justify-center`}
     >
       {randomHebrewNumber ? (
         <>
