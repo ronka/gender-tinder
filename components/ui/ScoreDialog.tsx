@@ -65,7 +65,9 @@ export function ScoreDialog({ correctAnswers, onClose }: Props) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Close</Button>
+          <Button onClick={() => onClose()} type="submit">
+            Close
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
