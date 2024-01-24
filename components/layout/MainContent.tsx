@@ -7,6 +7,7 @@ import JSConfetti from "js-confetti";
 import SwipeCard from "react-tinder-card";
 import { TinderItem } from "@/types/TinderCard";
 import { Direction } from "@/types/Direction";
+import { SwipeDialog } from "@/components/ui/SwipeDialog";
 
 const items = [
   { title: "כיסא", emoji: "🪑", gender: "m" },
@@ -79,6 +80,7 @@ export default function MainContent() {
 
   return (
     <main className="flex-1 flex items-center justify-center flex-col">
+      <SwipeDialog />
       <Score score={score} highestScore={highestScore} />
       <div className="h-full w-full max-w-[300px] max-h-[500px]">
         {items.map((item) => (
