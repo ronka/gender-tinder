@@ -34,8 +34,8 @@ export function ScoreDialog({ correctAnswers, onClose }: Props) {
         <DialogHeader>
           <DialogTitle>Share Your Score</DialogTitle>
           <DialogDescription>
-            You've achieved a high score on Tinder! Share your success with your
-            friends.
+            You have achieved a high score on Tinder! Share your success with
+            your friends.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
