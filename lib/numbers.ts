@@ -2,6 +2,11 @@ type HebrewNumbers = {
 	[number: string]: { m: string; f: string };
   };
 
+export function getRandomNumber(max: number) {
+	return Math.floor(Math.random() * max) + 1;
+  }
+  
+
 const hebrewNumbers:HebrewNumbers = {
 	1: { m: "אחד", f: "אחת" },
 	2: { m: "שניים", f: "שתיים" },
