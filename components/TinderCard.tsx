@@ -29,8 +29,14 @@ export default function TinderCard({ item }: TinderCardProps) {
             </span>
           </div>
           <div className="absolute bottom-4 flex items-center justify-between w-full px-4">
-            <span className="font-bold text-black">{randomHebrewNumber.m}</span>
-            <span className="font-bold text-black">{randomHebrewNumber.f}</span>
+            <span className="font-bold text-black text-center">
+              <div className="text-3xl">👈</div>
+              {randomHebrewNumber.m}
+            </span>
+            <span className="font-bold text-black text-center">
+              <div className="text-3xl">👉</div>
+              {randomHebrewNumber.f}
+            </span>
           </div>
         </>
       ) : (
