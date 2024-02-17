@@ -6,10 +6,7 @@ interface HebrewNumber {
   m: string;
 }
 
-const DEFAULT = {
-  m: "אחת",
-  f: "אחד",
-};
+const DEFAULT: HebrewNumber = hebrewNumbers[0];
 
 export default function useRandomHebrewNumber() {
   const [randomIndex, setRandomIndex] = useState<number | null>(null);
