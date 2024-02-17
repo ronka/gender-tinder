@@ -1,44 +1,32 @@
-import { hebrewNumbers } from "@/lib/numbers";
 import { TinderItem } from "@/types/TinderCard";
-import React, { useState } from "react";
-import { getRandomNumber } from "@/lib/numbers";
-import useRandomHebrewNumber from "@/hooks/useRandomHebrewNumber";
-import { LoadingSpinner } from "@/components/ui/loading";
+import React from "react";
+import { HebrewNumber } from "@/hooks/useRandomHebrewNumber";
 
 interface TinderCardProps {
   item: TinderItem;
+  hebrewNumber: HebrewNumber;
 }
 
-export default function TinderCard({ item }: TinderCardProps) {
-  const { randomHebrewNumber } = useRandomHebrewNumber();
-
+export default function TinderCard({ item, hebrewNumber }: TinderCardProps) {
   return (
     <div
       className={`w-[300px] h-[300px] relative rounded-2xl bg-gray-100 object-cover flex items-center justify-center`}
     >
-      {randomHebrewNumber ? (
-        <>
-          <div className="absolute opacity-20 text-9xl">{item.emoji}</div>
-          <div className="absolute text-6xl">{item.emoji}</div>
-          <div className="absolute bottom-20">
-            <span className="text-black text-lg font-semibold">
-              {item.title}
-            </span>
-          </div>
-          <div className="absolute bottom-4 flex items-center justify-between w-full px-4">
-            <span className="font-bold text-black text-center">
-              <div className="text-3xl">👈</div>
-              {randomHebrewNumber.m}
-            </span>
-            <span className="font-bold text-black text-center">
-              <div className="text-3xl">👉</div>
-              {randomHebrewNumber.f}
-            </span>
-          </div>
-        </>
-      ) : (
-        <LoadingSpinner />
-      )}
+      <div className="absolute opacity-20 text-9xl">{item.emoji}</div>
+      <div className="absolute text-6xl">{item.emoji}</div>
+      <div className="absolute bottom-20">
+        <span className="text-black text-lg font-semibold">{item.title}</span>
+      </div>
+      <div className="absolute bottom-4 flex items-center justify-between w-full px-4">
+        <span className="font-bold text-black text-center">
+          <div className="text-3xl">👈</div>
+          {hebrewNumber.m}
+        </span>
+        <span className="font-bold text-black text-center">
+          <div className="text-3xl">👉</div>
+          {hebrewNumber.f}
+        </span>
+      </div>
     </div>
   );
 }

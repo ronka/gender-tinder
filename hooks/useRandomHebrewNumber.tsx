@@ -1,21 +1,35 @@
 import { hebrewNumbers } from "@/lib/numbers";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+
+interface HebrewNumber {
+  f: string;
+  m: string;
+}
+
+const DEFAULT = {
+  m: "אחת",
+  f: "אחד",
+};
 
 export default function useRandomHebrewNumber() {
-  const [randomIndex, setRandomIndex] = useState<number | null>(null); // Initialize with null
+  const [randomIndex, setRandomIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    const getRandomIndex = () => {
-      const keys = Object.keys(hebrewNumbers);
-      const randomKey = parseInt(keys[Math.floor(Math.random() * keys.length)]);
-      setRandomIndex(randomKey);
-    };
+  const getRandomIndex = useCallback(() => {
+    const keys = Object.keys(hebrewNumbers);
+    const randomKey = parseInt(keys[Math.floor(Math.random() * keys.length)]);
+    setRandomIndex(randomKey);
+  }, []);
 
-    getRandomIndex(); // Generate a random index when the component mounts on the client side
-  }, []); // Use an empty dependency array to ensure it runs only on the client side
-
-  return {
-    randomHebrewNumber:
-      randomIndex !== null ? hebrewNumbers[randomIndex] : null,
+  const next = () => {
+    getRandomIndex(); // Generate a new random index
   };
+
+  const get = (): HebrewNumber => {
+    // Return the current random Hebrew number or null if not yet set
+    return randomIndex !== null ? hebrewNumbers[randomIndex] : DEFAULT;
+  };
+
+  return { next, get };
 }
+
+export type { HebrewNumber };

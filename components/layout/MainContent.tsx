@@ -12,6 +12,7 @@ import { Button } from "../ui/button";
 import useTimer from "@/hooks/useTimer";
 import { StartGameFramgent } from "../ui/StartGameFramgent";
 import Score from "../Score";
+import useRandomHebrewNumber from "@/hooks/useRandomHebrewNumber";
 
 const items = [
   { title: "כיסא", emoji: "🪑", gender: "m" },
@@ -59,6 +60,7 @@ const items = [
 export default function MainContent() {
   const [score, setScore] = useState(0);
   const [progress, setProgress] = useState(items.length);
+  const hebrewNumberService = useRandomHebrewNumber();
 
   const { highestScore, updateHighestScore } = useHighestScore();
   const [gameStarted, setGameStarted] = useState(false); // Track game state
@@ -80,6 +82,7 @@ export default function MainContent() {
 
   const swiped = (direction: Direction, item: TinderItem, index: number) => {
     setProgress(index);
+    hebrewNumberService.next();
 
     const isCorrect =
       (direction === "left" && item.gender === "m") ||
@@ -118,7 +121,10 @@ export default function MainContent() {
                 key={item.title}
                 onSwipe={(direction) => swiped(direction, item, index)}
               >
-                <TinderCard item={item} />
+                <TinderCard
+                  hebrewNumber={hebrewNumberService.get()}
+                  item={item}
+                />
               </SwipeCard>
             ))}
           </div>
