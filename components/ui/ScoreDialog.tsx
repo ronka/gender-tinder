@@ -28,23 +28,22 @@ export function ScoreDialog({ time, score, onClose }: Props) {
     }
   };
 
-  const SHARE_TEXT = `I just scored ${score} in ${formatTime(time)} minutes 🤓`;
+  const SHARE_TEXT = `הצלחתי ${score} תוך ${formatTime(time)} 🤓`;
 
   return (
     <Dialog onOpenChange={handleClose} defaultOpen={true}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent dir="rtl" className="sm:max-w-[350px]">
         <DialogHeader>
-          <DialogTitle>Share Your Score</DialogTitle>
-          <DialogDescription>
-            You have achieved a high score on Tinder! Share your success with
-            your friends.
+          <DialogTitle className="text-center">נגמררר</DialogTitle>
+          <DialogDescription className="text-center">
+            מעוניינים להתלהב על החברים שלכם?
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="flex items-center gap-2">
             <TrophyIcon className="h-6 w-6" />
             <p>
-              {score} in {formatTime(time)}
+              {score} נכונים תוך {formatTime(time)}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -55,7 +54,7 @@ export function ScoreDialog({ time, score, onClose }: Props) {
               )}`}
               target="_blank"
             >
-              <Button variant="outline">Share on X</Button>
+              <Button variant="outline">שתף ב-X</Button>
             </Link>
           </div>
           <div className="flex items-center gap-2">
@@ -64,13 +63,13 @@ export function ScoreDialog({ time, score, onClose }: Props) {
               target="_blank"
               href={`whatsapp://send?text=${encodeURIComponent(SHARE_TEXT)}`}
             >
-              <Button variant="outline">Share on WhatsApp</Button>
+              <Button variant="outline">שתף ב-WhatsApp</Button>
             </Link>
           </div>
         </div>
         <DialogFooter>
-          <Button onClick={() => onClose()} type="submit">
-            Try Again
+          <Button className="w-full" onClick={() => onClose()} type="submit">
+            נסה שוב
           </Button>
         </DialogFooter>
       </DialogContent>
