@@ -2,14 +2,16 @@
 
 import React, { useState } from "react";
 import TinderCard from "@/components/TinderCard";
-import Score from "@/components/Score";
 import JSConfetti from "js-confetti";
 import SwipeCard from "react-tinder-card";
 import { TinderItem } from "@/types/TinderCard";
 import { Direction } from "@/types/Direction";
-import { SwipeDialog } from "@/components/ui/SwipeDialog";
 import { useHighestScore } from "@/hooks/useHighestScore";
 import { ScoreDialog } from "../ui/ScoreDialog";
+import { Button } from "../ui/button";
+import useTimer from "@/hooks/useTimer";
+import { StartGameFramgent } from "../ui/StartGameFramgent";
+import Score from "../Score";
 
 const items = [
   { title: "כיסא", emoji: "🪑", gender: "m" },
@@ -57,11 +59,25 @@ const items = [
 export default function MainContent() {
   const [score, setScore] = useState(0);
   const { highestScore, updateHighestScore } = useHighestScore();
-  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false); // Track game state
   const [showCorrectAnswersDialog, setShowCorrectAnswersDialog] =
     useState(false);
+  const timer = useTimer();
 
-  const swiped = (direction: Direction, item: TinderItem) => {
+  const handleStartGame = () => {
+    timer.start();
+    setGameStarted(true);
+    setScore(0);
+  };
+
+  const handleResetGame = () => {
+    timer.reset();
+    setGameStarted(false);
+    setScore(0);
+  };
+
+  const swiped = (direction: Direction, item: TinderItem, index: number) => {
+    console.log(timer.getTime());
     const isCorrect =
       (direction === "left" && item.gender === "m") ||
       (direction === "right" && item.gender === "f");
@@ -78,36 +94,44 @@ export default function MainContent() {
       if (score + 1 > highestScore) {
         updateHighestScore(score + 1);
       }
-    } else {
-      setCorrectAnswers(score);
+    }
+
+    if (index === 0) {
       setShowCorrectAnswersDialog(true);
-      setScore(0);
     }
   };
 
   return (
     <main className="flex-1 flex items-center justify-center flex-col">
-      <SwipeDialog />
+      {!gameStarted && <StartGameFramgent onStartGame={handleStartGame} />}
+
+      {gameStarted && (
+        <>
+          <Score score={score} />
+          <div className="h-full w-full max-w-[300px] max-h-[500px]">
+            {items.map((item, index) => (
+              <SwipeCard
+                className="absolute"
+                key={item.title}
+                onSwipe={(direction) => swiped(direction, item, index)}
+              >
+                <TinderCard item={item} />
+              </SwipeCard>
+            ))}
+          </div>
+        </>
+      )}
+
       {showCorrectAnswersDialog && (
         <ScoreDialog
           onClose={() => {
+            handleResetGame();
             setShowCorrectAnswersDialog(false);
           }}
-          correctAnswers={correctAnswers}
+          score={score}
+          time={timer.getTime()}
         />
       )}
-      <Score score={score} highestScore={highestScore} />
-      <div className="h-full w-full max-w-[300px] max-h-[500px]">
-        {items.map((item) => (
-          <SwipeCard
-            className="absolute"
-            key={item.title}
-            onSwipe={(direction) => swiped(direction, item)}
-          >
-            <TinderCard item={item} />
-          </SwipeCard>
-        ))}
-      </div>
     </main>
   );
 }

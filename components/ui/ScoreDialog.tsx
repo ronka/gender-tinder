@@ -13,20 +13,22 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./button";
 import Link from "next/link";
+import { formatTime } from "@/lib/utils";
 
 interface Props {
-  correctAnswers: number;
+  time: number;
+  score: number;
   onClose: () => void;
 }
 
-export function ScoreDialog({ correctAnswers, onClose }: Props) {
+export function ScoreDialog({ time, score, onClose }: Props) {
   const handleClose = (open: boolean) => {
     if (!open) {
       onClose();
     }
   };
 
-  const SHARE_TEXT = `I just scored ${correctAnswers} 🤓`;
+  const SHARE_TEXT = `I just scored ${score} in ${formatTime(time)} minutes 🤓`;
 
   return (
     <Dialog onOpenChange={handleClose} defaultOpen={true}>
@@ -41,7 +43,9 @@ export function ScoreDialog({ correctAnswers, onClose }: Props) {
         <div className="grid gap-4 py-4">
           <div className="flex items-center gap-2">
             <TrophyIcon className="h-6 w-6" />
-            <p>Your highest score: {correctAnswers}</p>
+            <p>
+              {score} in {formatTime(time)}
+            </p>
           </div>
           <div className="flex items-center gap-2">
             <XIcon className="h-6 w-6" />
@@ -66,7 +70,7 @@ export function ScoreDialog({ correctAnswers, onClose }: Props) {
         </div>
         <DialogFooter>
           <Button onClick={() => onClose()} type="submit">
-            Close
+            Try Again
           </Button>
         </DialogFooter>
       </DialogContent>
