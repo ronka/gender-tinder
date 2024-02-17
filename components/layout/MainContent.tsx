@@ -58,6 +58,8 @@ const items = [
 
 export default function MainContent() {
   const [score, setScore] = useState(0);
+  const [progress, setProgress] = useState(items.length);
+
   const { highestScore, updateHighestScore } = useHighestScore();
   const [gameStarted, setGameStarted] = useState(false); // Track game state
   const [showCorrectAnswersDialog, setShowCorrectAnswersDialog] =
@@ -77,7 +79,8 @@ export default function MainContent() {
   };
 
   const swiped = (direction: Direction, item: TinderItem, index: number) => {
-    console.log(timer.getTime());
+    setProgress(index);
+
     const isCorrect =
       (direction === "left" && item.gender === "m") ||
       (direction === "right" && item.gender === "f");
@@ -107,7 +110,7 @@ export default function MainContent() {
 
       {gameStarted && (
         <>
-          <Score score={score} />
+          <Score progress={progress} score={score} />
           <div className="h-full w-full max-w-[300px] max-h-[500px]">
             {items.map((item, index) => (
               <SwipeCard
