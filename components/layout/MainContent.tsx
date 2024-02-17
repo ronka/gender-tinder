@@ -39,7 +39,7 @@ const items = [
   { title: "סבון", emoji: "🧼", gender: "m" },
   { title: "מברשת שיניים", emoji: "🪥", gender: "f" },
   { title: "משחת שיניים", emoji: "🦷", gender: "f" },
-  { title: "מסרק", emoji: "🌿", gender: "m" },
+  { title: "מסרק", emoji: "🪮", gender: "m" },
   { title: "מפתח", emoji: "🔑", gender: "m" },
   { title: "ארנק", emoji: "👛", gender: "m" },
   { title: "תיק", emoji: "👜", gender: "m" },
