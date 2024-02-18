@@ -58,11 +58,10 @@ const items = [
 ];
 
 export default function MainContent() {
-  const [score, setScore] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
   const [progress, setProgress] = useState(items.length);
   const hebrewNumberService = useRandomHebrewNumber();
 
-  const { highestScore, updateHighestScore } = useHighestScore();
   const [gameStarted, setGameStarted] = useState(false); // Track game state
   const [showCorrectAnswersDialog, setShowCorrectAnswersDialog] =
     useState(false);
@@ -71,13 +70,13 @@ export default function MainContent() {
   const handleStartGame = () => {
     timer.start();
     setGameStarted(true);
-    setScore(0);
+    setCorrectAnswers([]);
   };
 
   const handleResetGame = () => {
     timer.reset();
     setGameStarted(false);
-    setScore(0);
+    setCorrectAnswers([]);
   };
 
   const swiped = (direction: Direction, item: TinderItem, index: number) => {
@@ -89,17 +88,13 @@ export default function MainContent() {
       (direction === "right" && item.gender === "f");
 
     if (isCorrect) {
-      setScore(score + 1);
+      setCorrectAnswers((correctAnswers) => [...correctAnswers, item.emoji]);
 
       const jsConfetti = new JSConfetti();
 
       jsConfetti.addConfetti({
         emojis: [item.emoji, "⚡️", "💥", "✨", "💫"],
       });
-
-      if (score + 1 > highestScore) {
-        updateHighestScore(score + 1);
-      }
     }
 
     if (index === 0) {
@@ -113,7 +108,7 @@ export default function MainContent() {
 
       {gameStarted && (
         <>
-          <Score progress={progress} score={score} />
+          <Score progress={progress} score={correctAnswers.length} />
           <div className="h-full w-full max-w-[300px] max-h-[500px]">
             {items.map((item, index) => (
               <SwipeCard
@@ -137,7 +132,8 @@ export default function MainContent() {
             handleResetGame();
             setShowCorrectAnswersDialog(false);
           }}
-          score={score}
+          correctAnswers={correctAnswers}
+          score={correctAnswers.length}
           time={timer.getTime()}
         />
       )}

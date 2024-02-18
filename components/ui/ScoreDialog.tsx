@@ -17,18 +17,21 @@ import { formatTime } from "@/lib/utils";
 
 interface Props {
   time: number;
+  correctAnswers: string[];
   score: number;
   onClose: () => void;
 }
 
-export function ScoreDialog({ time, score, onClose }: Props) {
+export function ScoreDialog({ time, score, correctAnswers, onClose }: Props) {
   const handleClose = (open: boolean) => {
     if (!open) {
       onClose();
     }
   };
 
-  const SHARE_TEXT = `הצלחתי ${score} תוך ${formatTime(time)} 🤓`;
+  const SHARE_TEXT = `אחדאחת #1
+${score} תוך ${formatTime(time)}
+${correctAnswers.join("")}`;
 
   return (
     <Dialog onOpenChange={handleClose} defaultOpen={true}>
@@ -36,7 +39,7 @@ export function ScoreDialog({ time, score, onClose }: Props) {
         <DialogHeader>
           <DialogTitle className="text-center">נגמררר</DialogTitle>
           <DialogDescription className="text-center">
-            מעוניינים להתלהב על החברים שלכם?
+            מעוניינים להתלהב על החברים שלכם? <br />${correctAnswers.join("")}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
