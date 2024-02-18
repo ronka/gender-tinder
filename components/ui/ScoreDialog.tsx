@@ -19,17 +19,24 @@ interface Props {
   time: number;
   correctAnswers: string[];
   score: number;
+  name: string;
   onClose: () => void;
 }
 
-export function ScoreDialog({ time, score, correctAnswers, onClose }: Props) {
+export function ScoreDialog({
+  time,
+  score,
+  correctAnswers,
+  name,
+  onClose,
+}: Props) {
   const handleClose = (open: boolean) => {
     if (!open) {
       onClose();
     }
   };
 
-  const SHARE_TEXT = `אחדאחת #1
+  const SHARE_TEXT = `אחדאחת - ${name}
 ${score} תוך ${formatTime(time)}
 ${correctAnswers.join("")}`;
 
