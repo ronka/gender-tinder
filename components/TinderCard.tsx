@@ -1,13 +1,21 @@
 import { TinderItem } from "@/types/TinderCard";
 import React from "react";
 import { HebrewNumber } from "@/hooks/useRandomHebrewNumber";
+import { Button } from "./ui/button";
 
 interface TinderCardProps {
   item: TinderItem;
   hebrewNumber: HebrewNumber;
+  handleSwipeRight: () => void;
+  handleSwipeLeft: () => void;
 }
 
-export default function TinderCard({ item, hebrewNumber }: TinderCardProps) {
+export default function TinderCard({
+  item,
+  hebrewNumber,
+  handleSwipeRight,
+  handleSwipeLeft,
+}: TinderCardProps) {
   return (
     <div
       className={`w-[300px] h-[300px] relative rounded-2xl bg-gray-100 object-cover flex items-center justify-center`}
@@ -17,16 +25,28 @@ export default function TinderCard({ item, hebrewNumber }: TinderCardProps) {
       <div className="absolute bottom-20">
         <span className="text-black text-lg font-semibold">{item.title}</span>
       </div>
+
       <div className="absolute bottom-4 flex items-center justify-between w-full px-4">
-        <span className="font-bold text-black text-center">
+        <span className="font-bold text-black text-center" title="זכר">
           <div className="text-3xl">👈</div>
           {hebrewNumber.m}
         </span>
-        <span className="font-bold text-black text-center">
+        <span className="font-bold text-black text-center" title="נקבה">
           <div className="text-3xl">👉</div>
           {hebrewNumber.f}
         </span>
       </div>
+
+      <button
+        className="absolute w-[50%] left-0 top-0 bottom-0"
+        onClick={handleSwipeLeft}
+        title="נקבה"
+      />
+      <button
+        className="absolute w-[50%] right-0 top-0 bottom-0"
+        onClick={handleSwipeRight}
+        title="זכר"
+      />
     </div>
   );
 }

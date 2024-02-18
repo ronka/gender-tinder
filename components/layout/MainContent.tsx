@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import TinderCard from "@/components/TinderCard";
 import JSConfetti from "js-confetti";
 import SwipeCard from "react-tinder-card";
@@ -13,6 +13,7 @@ import useTimer from "@/hooks/useTimer";
 import { StartGameFramgent } from "../ui/StartGameFramgent";
 import Score from "../Score";
 import useRandomHebrewNumber from "@/hooks/useRandomHebrewNumber";
+import { useCardsRef } from "@/hooks/useCardsRef";
 
 const items = [
   { title: "כיסא", emoji: "🪑", gender: "m" },
@@ -65,7 +66,10 @@ export default function MainContent() {
   const [gameStarted, setGameStarted] = useState(false); // Track game state
   const [showCorrectAnswersDialog, setShowCorrectAnswersDialog] =
     useState(false);
+
   const timer = useTimer();
+
+  const refs = useCardsRef(items.length);
 
   const handleStartGame = () => {
     timer.start();
@@ -112,6 +116,7 @@ export default function MainContent() {
           <div className="h-full w-full max-w-[300px] max-h-[500px]">
             {items.map((item, index) => (
               <SwipeCard
+                ref={refs[index]}
                 className="absolute"
                 key={item.title}
                 onSwipe={(direction) => swiped(direction, item, index)}
@@ -119,6 +124,12 @@ export default function MainContent() {
                 <TinderCard
                   hebrewNumber={hebrewNumberService.get()}
                   item={item}
+                  handleSwipeRight={() => {
+                    refs[index].current?.swipe("right");
+                  }}
+                  handleSwipeLeft={() => {
+                    refs[index].current?.swipe("left");
+                  }}
                 />
               </SwipeCard>
             ))}
