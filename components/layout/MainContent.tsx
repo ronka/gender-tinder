@@ -16,7 +16,6 @@ import { Game } from "@/types/Game";
 
 export default function MainContent({ game }: { game: Game }) {
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
-  console.log(game.items);
   const [progress, setProgress] = useState(game.items.length);
   const [gameStarted, setGameStarted] = useState(false); // Track game state
   const [showCorrectAnswersDialog, setShowCorrectAnswersDialog] =
