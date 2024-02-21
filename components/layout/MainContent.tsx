@@ -41,6 +41,11 @@ export default function MainContent({ game }: { game: Game }) {
     setCorrectAnswers([]);
   };
 
+  const handleStopGame = () => {
+    timer.stop();
+    setGameStarted(false);
+  };
+
   const swiped = (direction: Direction, item: TinderItem, index: number) => {
     setProgress(index);
     hebrewNumberService.next();
@@ -66,7 +71,7 @@ export default function MainContent({ game }: { game: Game }) {
       setShowCorrectAnswersDialog(true);
 
       // todo: fix bug when swipping fast and the cards are stuck in the dom causing the screen to be too big and not see the dialog
-      handleResetGame();
+      handleStopGame();
     }
   };
 
