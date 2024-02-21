@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "אחדאחת",
-  description: "משחק מילים נחמד לתרגום העברית",
+  description: "משחק מילים לתרגול העברית",
 };
 
 export default function RootLayout({
