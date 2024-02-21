@@ -14,6 +14,7 @@ import useRandomHebrewNumber from "@/hooks/useRandomHebrewNumber";
 import { useCardsRef } from "@/hooks/useCardsRef";
 import { Game } from "@/types/Game";
 import { isIOSDevice } from "@/lib/utils";
+import * as events from "@/lib/events";
 
 export default function MainContent({ game }: { game: Game }) {
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
@@ -32,6 +33,8 @@ export default function MainContent({ game }: { game: Game }) {
     setGameStarted(true);
     setProgress(game.items.length);
     setCorrectAnswers([]);
+
+    events.trackStartGame();
   };
 
   const handleResetGame = () => {
@@ -39,11 +42,15 @@ export default function MainContent({ game }: { game: Game }) {
     setGameStarted(false);
     setProgress(game.items.length);
     setCorrectAnswers([]);
+
+    events.trackResetGame();
   };
 
   const handleStopGame = () => {
     timer.stop();
     setGameStarted(false);
+
+    events.trackEndGame(correctAnswers.length);
   };
 
   const swiped = (direction: Direction, item: TinderItem, index: number) => {
