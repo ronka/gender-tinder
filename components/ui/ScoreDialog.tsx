@@ -46,7 +46,8 @@ ${correctAnswers.join("")}`;
         <DialogHeader>
           <DialogTitle className="text-center">נגמררר</DialogTitle>
           <DialogDescription className="text-center">
-            מעוניינים להתלהב על החברים שלכם? <br />${correctAnswers.join("")}
+            מעוניינים להתלהב על החברים שלכם? <br />
+            {correctAnswers.join("")}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
