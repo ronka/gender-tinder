@@ -67,7 +67,32 @@ const data = {
       { title: "ירח", emoji: "🌚", gender: "m" },
     ],
   },
-  "18-02-2024": {
+  "21-02-2024": {
+    name: "beta#0",
+    items: [
+      { title: "עכבר", emoji: "🖱️", gender: "m" },
+      { title: "מסך", emoji: "🖥️", gender: "m" },
+      { title: "מנורה", emoji: "🪔", gender: "f" },
+      { title: "שולחן", emoji: "🪑", gender: "m" },
+      { title: "מיטה", emoji: "🛏️", gender: "f" },
+      { title: "ארון", emoji: "🚪", gender: "m" },
+      { title: "מראה", emoji: "🪞", gender: "f" },
+      { title: "מגבת", emoji: "🛁", gender: "f" },
+      { title: "סבון", emoji: "🧼", gender: "m" },
+      { title: "מברשת שיניים", emoji: "🪥", gender: "f" },
+      { title: "משחת שיניים", emoji: "🦷", gender: "f" },
+      { title: "מסרק", emoji: "🪮", gender: "m" },
+      { title: "מפתח", emoji: "🔑", gender: "m" },
+      { title: "ארנק", emoji: "👛", gender: "m" },
+      { title: "תיק", emoji: "👜", gender: "m" },
+      { title: "מעיל", emoji: "🧥", gender: "m" },
+      { title: "כובע", emoji: "🧢", gender: "m" },
+      { title: "נעל", emoji: "👠", gender: "f" },
+      { title: "גרב", emoji: "🧦", gender: "f" },
+      { title: "מכנסיים", emoji: "👖", gender: "m" },
+    ],
+  },
+  "22-02-2024": {
     name: "beta#1",
     items: [
       { title: "מגבת", emoji: "🛁", gender: "f" },
@@ -92,7 +117,7 @@ const data = {
       { title: "ירח", emoji: "🌚", gender: "m" },
     ],
   },
-  "19-02-2024": {
+  "23-02-2024": {
     name: "beta#1",
     items: [
       { title: "מגבת", emoji: "🛁", gender: "f" },
@@ -117,7 +142,7 @@ const data = {
       { title: "ירח", emoji: "🌚", gender: "m" },
     ],
   },
-  "20-02-2024": {
+  "24-02-2024": {
     name: "beta#3",
     items: [
       { title: "מגבת", emoji: "🛁", gender: "f" },
@@ -142,7 +167,7 @@ const data = {
       { title: "ירח", emoji: "🌚", gender: "m" },
     ],
   },
-  "21-02-2024": {
+  "25-02-2024": {
     name: "beta#4",
     items: [
       { title: "מגבת", emoji: "🛁", gender: "f" },
