@@ -44,10 +44,10 @@ ${correctAnswers.join("")}`;
     <Dialog onOpenChange={handleClose} defaultOpen={true}>
       <DialogContent dir="rtl" className="sm:max-w-[350px]">
         <DialogHeader>
-          <DialogTitle className="text-center">נגמררר</DialogTitle>
-          <DialogDescription className="text-center">
-            מעוניינים להתלהב על החברים שלכם? <br />
-            {correctAnswers.join("")}
+          <DialogTitle className="text-center">הסוף</DialogTitle>
+          <DialogDescription className="text-center pt-4">
+            <p>{correctAnswers.join("")}</p>
+            <p>מחר סט חדש, תבואו</p>
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
