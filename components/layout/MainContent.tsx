@@ -81,6 +81,8 @@ export default function MainContent({ game }: { game: Game }) {
                 className="absolute"
                 key={item.title}
                 onSwipe={(direction) => swiped(direction, item, index)}
+                preventSwipe={["up", "down"]}
+                flickOnSwipe={true}
               >
                 <TinderCard
                   hebrewNumber={hebrewNumberService.get()}
