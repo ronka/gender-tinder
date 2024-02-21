@@ -13,7 +13,7 @@ import Score from "../Score";
 import useRandomHebrewNumber from "@/hooks/useRandomHebrewNumber";
 import { useCardsRef } from "@/hooks/useCardsRef";
 import { Game } from "@/types/Game";
-import { isIOSDevice } from "@/lib/utils";
+import { formatTime, isIOSDevice } from "@/lib/utils";
 import * as events from "@/lib/events";
 
 export default function MainContent({ game }: { game: Game }) {
@@ -50,7 +50,7 @@ export default function MainContent({ game }: { game: Game }) {
     timer.stop();
     setGameStarted(false);
 
-    events.trackEndGame(correctAnswers.length);
+    events.trackEndGame(correctAnswers.length, formatTime(timer.getTime()));
   };
 
   const swiped = (direction: Direction, item: TinderItem, index: number) => {
