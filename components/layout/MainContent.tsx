@@ -64,6 +64,9 @@ export default function MainContent({ game }: { game: Game }) {
 
     if (index === 0) {
       setShowCorrectAnswersDialog(true);
+
+      // todo: fix bug when swipping fast and the cards are stuck in the dom causing the screen to be too big and not see the dialog
+      handleResetGame();
     }
   };
 
