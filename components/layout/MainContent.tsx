@@ -61,7 +61,6 @@ export default function MainContent({ game }: { game: Game }) {
 
     if (index === 0) {
       setShowCorrectAnswersDialog(true);
-      handleResetGame();
     }
   };
 
