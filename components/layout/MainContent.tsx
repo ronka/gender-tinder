@@ -13,6 +13,7 @@ import Score from "../Score";
 import useRandomHebrewNumber from "@/hooks/useRandomHebrewNumber";
 import { useCardsRef } from "@/hooks/useCardsRef";
 import { Game } from "@/types/Game";
+import { isIOSDevice } from "@/lib/utils";
 
 export default function MainContent({ game }: { game: Game }) {
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
@@ -51,11 +52,14 @@ export default function MainContent({ game }: { game: Game }) {
     if (isCorrect) {
       setCorrectAnswers((correctAnswers) => [...correctAnswers, item.emoji]);
 
-      jsConfettiRef.current = new JSConfetti();
+      // because of preformance issues in other devices
+      if (isIOSDevice()) {
+        jsConfettiRef.current = new JSConfetti();
 
-      jsConfettiRef.current.addConfetti({
-        emojis: [item.emoji, "🎉", "🥳"],
-      });
+        jsConfettiRef.current.addConfetti({
+          emojis: [item.emoji, "🎉", "🥳"],
+        });
+      }
     }
 
     if (index === 0) {
