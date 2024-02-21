@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import TinderCard from "@/components/TinderCard";
 import JSConfetti from "js-confetti";
 import SwipeCard from "react-tinder-card";
@@ -14,14 +14,13 @@ import useRandomHebrewNumber from "@/hooks/useRandomHebrewNumber";
 import { useCardsRef } from "@/hooks/useCardsRef";
 import { Game } from "@/types/Game";
 
-const jsConfetti = new JSConfetti();
-
 export default function MainContent({ game }: { game: Game }) {
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
   const [progress, setProgress] = useState(game.items.length);
   const [gameStarted, setGameStarted] = useState(false); // Track game state
   const [showCorrectAnswersDialog, setShowCorrectAnswersDialog] =
     useState(false);
+  const jsConfettiRef = useRef<JSConfetti>();
 
   const hebrewNumberService = useRandomHebrewNumber();
   const timer = useTimer();
@@ -52,10 +51,10 @@ export default function MainContent({ game }: { game: Game }) {
     if (isCorrect) {
       setCorrectAnswers((correctAnswers) => [...correctAnswers, item.emoji]);
 
-      const jsConfetti = new JSConfetti();
+      jsConfettiRef.current = new JSConfetti();
 
-      jsConfetti.addConfetti({
-        emojis: [item.emoji, "⚡️", "💥", "✨", "💫"],
+      jsConfettiRef.current.addConfetti({
+        emojis: [item.emoji, "🎉", "🥳"],
       });
     }
 
