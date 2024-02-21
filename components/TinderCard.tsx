@@ -6,16 +6,9 @@ import { Button } from "./ui/button";
 interface TinderCardProps {
   item: TinderItem;
   hebrewNumber: HebrewNumber;
-  handleSwipeRight: () => void;
-  handleSwipeLeft: () => void;
 }
 
-export default function TinderCard({
-  item,
-  hebrewNumber,
-  handleSwipeRight,
-  handleSwipeLeft,
-}: TinderCardProps) {
+export default function TinderCard({ item, hebrewNumber }: TinderCardProps) {
   return (
     <div
       className={`w-[300px] h-[300px] relative rounded-2xl bg-gray-100 object-cover flex items-center justify-center`}
@@ -36,17 +29,6 @@ export default function TinderCard({
           {hebrewNumber.f}
         </span>
       </div>
-
-      <button
-        className="absolute w-[50%] left-0 top-0 bottom-0"
-        onClick={handleSwipeLeft}
-        title="נקבה"
-      />
-      <button
-        className="absolute w-[50%] right-0 top-0 bottom-0"
-        onClick={handleSwipeRight}
-        title="זכר"
-      />
     </div>
   );
 }

@@ -85,12 +85,6 @@ export default function MainContent({ game }: { game: Game }) {
                 <TinderCard
                   hebrewNumber={hebrewNumberService.get()}
                   item={item}
-                  handleSwipeRight={() => {
-                    refs[index].current?.swipe("right");
-                  }}
-                  handleSwipeLeft={() => {
-                    refs[index].current?.swipe("left");
-                  }}
                 />
               </SwipeCard>
             ))}
