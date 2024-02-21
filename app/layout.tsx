@@ -4,6 +4,7 @@ import "./globals.css";
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/react";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
         )}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
