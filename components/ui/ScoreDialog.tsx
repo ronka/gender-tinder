@@ -36,8 +36,8 @@ export function ScoreDialog({
     }
   };
 
-  const SHARE_TEXT = `אחדאחת - ${name}
-${score} תוך ${formatTime(time)}
+  const SHARE_TEXT = `ehadah.at - אחתאחד - ${name}
+הצלחתי ${score} תוך ${formatTime(time)}
 ${correctAnswers.join("")}`;
 
   return (
