@@ -14,6 +14,8 @@ import useRandomHebrewNumber from "@/hooks/useRandomHebrewNumber";
 import { useCardsRef } from "@/hooks/useCardsRef";
 import { Game } from "@/types/Game";
 
+const jsConfetti = new JSConfetti();
+
 export default function MainContent({ game }: { game: Game }) {
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
   const [progress, setProgress] = useState(game.items.length);
@@ -59,6 +61,7 @@ export default function MainContent({ game }: { game: Game }) {
 
     if (index === 0) {
       setShowCorrectAnswersDialog(true);
+      handleResetGame();
     }
   };
 
