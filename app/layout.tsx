@@ -5,6 +5,7 @@ import { DirectionProvider } from "@radix-ui/react-direction";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
+import { GameResultsProvider } from "@/context/GameResultContext";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -31,7 +32,7 @@ export default function RootLayout({
           inter.className
         )}
       >
-        {children}
+        <GameResultsProvider>{children}</GameResultsProvider>
         <Analytics />
       </body>
     </html>
