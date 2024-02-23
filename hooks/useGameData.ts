@@ -1,11 +1,11 @@
 import { TinderItem } from "@/types/TinderCard";
 import { useState, useEffect } from "react";
 import data from "@/lib/data";
-import { DataSchema, Game } from "@/types/Game";
+import { DataSchema, DateKey, Game } from "@/types/Game";
 import { getTodaysDate } from "@/lib/utils";
 
 // Function to parse and validate data for a given date
-const parseGameDataForDate = (data: any, date: string): Game | null => {
+const parseGameDataForDate = (data: any, date: DateKey): Game | null => {
   if (data[date]) {
     try {
       const parsedData = DataSchema.parse(data);

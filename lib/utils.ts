@@ -1,3 +1,4 @@
+import { GameResult } from "@/context/GameResultContext";
 import { DateKey } from "@/types/Game";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -45,3 +46,47 @@ export function isIOSDevice() {
     (navigator.userAgent.includes("Mac") && "ontouchend" in document)
   );
 }
+
+export interface AggregatedResult {
+  date: string;
+  averageCorrectAnswers: number;
+  averageTime: number;
+  numberOfTries: number;
+}
+
+export const aggregateResults = (
+  gameResults: GameResult[]
+): AggregatedResult[] => {
+  const aggregatedResults: {
+    [date: string]: {
+      totalCorrectAnswers: number;
+      totalTime: number;
+      count: number;
+    };
+  } = {};
+
+  gameResults.forEach((result) => {
+    const dateKey = result.date;
+    if (!aggregatedResults[dateKey]) {
+      aggregatedResults[dateKey] = {
+        totalCorrectAnswers: 0,
+        totalTime: 0,
+        count: 0,
+      };
+    }
+    aggregatedResults[dateKey].totalCorrectAnswers +=
+      result.correctAnswers.length;
+    aggregatedResults[dateKey].totalTime += result.time;
+    aggregatedResults[dateKey].count++;
+  });
+
+  return Object.keys(aggregatedResults).map((date) => ({
+    date,
+    averageCorrectAnswers:
+      aggregatedResults[date].totalCorrectAnswers /
+      aggregatedResults[date].count,
+    averageTime:
+      aggregatedResults[date].totalTime / aggregatedResults[date].count,
+    numberOfTries: aggregatedResults[date].count,
+  }));
+};
