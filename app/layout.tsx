@@ -6,6 +6,8 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { GameResultsProvider } from "@/context/GameResultContext";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -32,7 +34,13 @@ export default function RootLayout({
           inter.className
         )}
       >
-        <GameResultsProvider>{children}</GameResultsProvider>
+        <GameResultsProvider>
+          <div className="flex flex-col h-screen w-full bg-[#ffffff] p-4">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </GameResultsProvider>
         <Analytics />
       </body>
     </html>
