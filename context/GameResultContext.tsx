@@ -8,7 +8,7 @@ import { DateKey } from "@/types/Game";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Define game result interface
-interface GameResult {
+export interface GameResult {
   correctAnswers: string[];
   time: number;
   date: DateKey;

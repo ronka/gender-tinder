@@ -13,8 +13,9 @@ import Score from "../Score";
 import useRandomHebrewNumber from "@/hooks/useRandomHebrewNumber";
 import { useCardsRef } from "@/hooks/useCardsRef";
 import { Game } from "@/types/Game";
-import { formatTime, isIOSDevice } from "@/lib/utils";
+import { formatTime, getTodaysDate, isIOSDevice } from "@/lib/utils";
 import * as events from "@/lib/events";
+import { useGameResultsContext } from "@/context/GameResultContext";
 
 export default function MainContent({ game }: { game: Game }) {
   const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
@@ -24,6 +25,7 @@ export default function MainContent({ game }: { game: Game }) {
     useState(false);
   const jsConfettiRef = useRef<JSConfetti>();
 
+  const { addGameResult } = useGameResultsContext();
   const hebrewNumberService = useRandomHebrewNumber();
   const timer = useTimer();
   const refs = useCardsRef(game.items.length);
@@ -49,7 +51,11 @@ export default function MainContent({ game }: { game: Game }) {
   const handleStopGame = () => {
     timer.stop();
     setGameStarted(false);
-
+    addGameResult({
+      correctAnswers: correctAnswers,
+      time: timer.getTime(),
+      date: getTodaysDate(),
+    });
     events.trackEndGame(correctAnswers.length, formatTime(timer.getTime()));
   };
 
