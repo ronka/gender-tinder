@@ -16,7 +16,7 @@ export const StartGameFramgent: React.FC<{
         אחת ➡️
       </div>
       <Button className="w-full max-w-xs" onClick={onStartGame}>
-        התחל 🚀
+        התחל ⏱️
       </Button>
     </div>
   );
