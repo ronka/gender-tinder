@@ -7,6 +7,8 @@ const DayDataSchema = z.object({
   items: z.array(TinderItemSchema),
 });
 
+type DateKey = `${string}-${string}-${string}`;
+
 // Regex to validate the date format dd-mm-yyyy
 
 // Schema to validate the entire data object, including keys
@@ -18,3 +20,4 @@ export const DataSchema = z.record(
 );
 
 export type Game = { name: string; items: TinderItem[] };
+export type { DateKey };

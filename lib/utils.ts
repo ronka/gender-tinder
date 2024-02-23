@@ -1,3 +1,4 @@
+import { DateKey } from "@/types/Game";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -5,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const getTodaysDate = (): string => {
+export const getTodaysDate = (): DateKey => {
   return new Date()
     .toLocaleDateString("en-GB", {
       day: "2-digit",
@@ -13,7 +14,7 @@ export const getTodaysDate = (): string => {
       year: "numeric",
     })
     .split("/")
-    .join("-"); // Format: dd-mm-yyyy
+    .join("-") as DateKey; // Format: dd-mm-yyyy
 };
 
 export function formatTime(milliseconds: number): string {
