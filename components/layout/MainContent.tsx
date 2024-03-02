@@ -110,6 +110,7 @@ export default function MainContent({ game }: { game: Game }) {
                 <TinderCard
                   hebrewNumber={hebrewNumberService.get()}
                   item={item}
+                  isActive={progress === index + 1}
                 />
               </SwipeCard>
             ))}
