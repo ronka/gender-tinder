@@ -12,8 +12,8 @@ export const StartGameFramgent: React.FC<{
       <h2>{name}</h2>
       <div className="text-center space-y-2 text-gray-500 dark:text-gray-400">
         החלק לצד הנכון <br />
-        אחד ⬅️ <br />
-        אחת ➡️
+        זכר ⬅️ <br />
+        נקבה ➡️
       </div>
       <Button className="w-full max-w-xs" onClick={onStartGame}>
         התחל ⏱️
