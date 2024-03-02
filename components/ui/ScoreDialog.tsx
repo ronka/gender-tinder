@@ -14,6 +14,7 @@ import {
 import { Button } from "./button";
 import Link from "next/link";
 import { formatTime } from "@/lib/utils";
+import { trackShare } from "@/lib/events";
 
 interface Props {
   time: number;
@@ -65,7 +66,14 @@ ${correctAnswers.join("")}`;
               )}`}
               target="_blank"
             >
-              <Button variant="outline">שתף ב-X</Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  trackShare(score, formatTime(time), "twitter");
+                }}
+              >
+                שתף ב-X
+              </Button>
             </Link>
           </div>
           <div className="flex items-center gap-2">
@@ -74,7 +82,14 @@ ${correctAnswers.join("")}`;
               target="_blank"
               href={`whatsapp://send?text=${encodeURIComponent(SHARE_TEXT)}`}
             >
-              <Button variant="outline">שתף ב-WhatsApp</Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  trackShare(score, formatTime(time), "whatsapp");
+                }}
+              >
+                שתף ב-WhatsApp
+              </Button>
             </Link>
           </div>
         </div>
