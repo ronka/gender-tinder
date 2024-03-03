@@ -195,7 +195,7 @@ const data: Record<string, { name: string; items: TinderItem[] }> = {
     ],
   },
   "03-03-2024": {
-    name: "beta#4",
+    name: "beta#0",
     items: [
       { title: "מגבת", emoji: "🛁", gender: "f" },
       { title: "סבון", emoji: "🧼", gender: "m" },
