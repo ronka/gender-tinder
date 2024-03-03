@@ -8,15 +8,10 @@ const GenderSchema = z.union([
 
 export type GenderType = z.infer<typeof GenderSchema>;
 
-// types.ts
-export interface TinderItem {
-  title: string;
-  emoji: string;
-  gender: GenderType;
-}
-
 export const TinderItemSchema = z.object({
   title: z.string(),
   emoji: z.string(),
-  gender: z.string(),
+  gender: GenderSchema,
 });
+
+export type TinderItem = z.infer<typeof TinderItemSchema>;
