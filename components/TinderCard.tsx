@@ -15,7 +15,6 @@ export default function TinderCard({
   hebrewNumber,
   isActive,
 }: TinderCardProps) {
-  console.log(isActive);
   return (
     <div
       className={cn(
