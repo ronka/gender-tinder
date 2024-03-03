@@ -1,3 +1,5 @@
+import { TinderItem } from "@/types/TinderCard";
+
 const items = [
   { title: "כיסא", emoji: "🪑", gender: "m" },
   { title: "דלעת", emoji: "🎃", gender: "f" },
@@ -41,7 +43,7 @@ const items = [
   { title: "ירח", emoji: "🌚", gender: "m" },
 ];
 
-const data = {
+const data: Record<string, { name: string; items: TinderItem[] }> = {
   default: {
     name: "default",
     items: [
