@@ -65,7 +65,8 @@ export default function MainContent({ game }: { game: Game }) {
 
     const isCorrect =
       (direction === "left" && item.gender === "m") ||
-      (direction === "right" && item.gender === "f");
+      (direction === "right" && item.gender === "f") ||
+      item.gender === "mixed";
 
     if (isCorrect) {
       setCorrectAnswers((correctAnswers) => [...correctAnswers, item.emoji]);
